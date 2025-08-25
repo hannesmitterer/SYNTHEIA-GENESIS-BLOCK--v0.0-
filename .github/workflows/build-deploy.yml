@@ -1,5 +1,5 @@
 ---
-name: Build and Deploy Kernel
+name: Build and Deploy
 
 on:
   push:
@@ -38,6 +38,14 @@ jobs:
             kernel
             kernel.tar.gz
 
+      - name: Deploy to GitHub Pages (on main branch only)
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          keep_files: false
+
       - name: Create Release (on main branch only)
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: actions/create-release@v1
@@ -53,6 +61,7 @@ jobs:
             - Built from commit: ${{ github.sha }}
             - Kernel compiled successfully
             - Package: kernel.tar.gz
+            - Website: https://${{ github.repository_owner }}.github.io/SYNTHEIA-GENESIS-BLOCK--v0.0-/
 
             ## Manual Build Instructions
             ```sh

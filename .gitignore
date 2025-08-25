@@ -19,3 +19,11 @@ kernel
 # OS files
 .DS_Store
 Thumbs.db
+
+# Additional build directories
+build/
+dist/
+out/
+
+# Logs
+*.log
