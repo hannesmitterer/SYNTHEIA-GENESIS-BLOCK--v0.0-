@@ -2,6 +2,22 @@
 
 A minimal C kernel starter project with automated build and deployment pipeline.
 
+## 🌐 Interactive Project Visualization
+
+**[View Live Visualization →](https://hannesmitterer.github.io/SYNTHEIA-GENESIS-BLOCK--v0.0-/)**
+
+Explore the project architecture through an interactive graph visualization that shows:
+- Core components and their relationships
+- Build and deployment pipeline flow  
+- Development workflow connections
+- Future extension possibilities
+
+The visualization features:
+- **Interactive nodes**: Click and drag to explore
+- **Multiple layouts**: Hierarchical, force-directed, and circular views
+- **Hover details**: Rich tooltips with component descriptions
+- **Responsive design**: Works on desktop and mobile
+
 ## Overview
 
 This project provides a foundation for kernel development with:
@@ -44,6 +60,7 @@ On every push to `main` or PR merge, GitHub Actions automatically:
 ├── .github/
 │   └── workflows/
 │       └── build-deploy.yml # CI/CD pipeline configuration
+├── index.html              # Interactive project visualization
 ├── README.md               # This documentation
 └── LICENSE                 # GPL-3.0 license
 ```
@@ -107,4 +124,5 @@ See `.github/workflows/build-deploy.yml` for complete workflow configuration inc
 - Build environment setup
 - Compilation steps  
 - Packaging process
+- GitHub Pages deployment (website)
 - Release creation and artifact upload
