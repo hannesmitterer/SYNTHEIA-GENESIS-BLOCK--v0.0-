@@ -1,0 +1,21 @@
+# Build artifacts
+kernel
+*.tar.gz
+*.o
+*.a
+*.so
+
+# Temporary files
+*~
+*.tmp
+*.swp
+*.swo
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# OS files
+.DS_Store
+Thumbs.db

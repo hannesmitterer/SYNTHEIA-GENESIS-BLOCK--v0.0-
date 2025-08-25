@@ -1,0 +1,74 @@
+---
+name: Build and Deploy Kernel
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc build-essential
+
+      - name: Build kernel
+        run: |
+          gcc src/main.c -o kernel
+          ls -la kernel
+
+      - name: Package kernel
+        run: |
+          tar -czvf kernel.tar.gz kernel
+          ls -la kernel.tar.gz
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: kernel-build
+          path: |
+            kernel
+            kernel.tar.gz
+
+      - name: Create Release (on main branch only)
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: release-${{ github.sha }}
+          release_name: Kernel Release ${{ github.sha }}
+          body: |
+            Automated kernel build and release.
+
+            ## Changes
+            - Built from commit: ${{ github.sha }}
+            - Kernel compiled successfully
+            - Package: kernel.tar.gz
+
+            ## Manual Build Instructions
+            ```sh
+            gcc src/main.c -o kernel
+            tar -czvf kernel.tar.gz kernel
+            ```
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./kernel.tar.gz
+          asset_name: kernel.tar.gz
+          asset_content_type: application/gzip
