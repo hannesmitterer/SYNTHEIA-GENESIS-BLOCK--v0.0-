@@ -1,0 +1,41 @@
+hannesmitterer
+SYNTHEIA-GENESIS-BLOCK--v0.0-
+ 
+Type / to search
+Code
+Issues
+2
+Pull requests
+1
+Actions
+Projects
+1
+Security
+Insights
+Settings
+Settings: hannesmitterer/SYNTHEIA-GENESIS-BLOCK--v0.0-
+Access
+Code and automation
+Security
+Integrations
+Copilot coding agent
+Preview
+With Copilot coding agent, developers can delegate tasks to Copilot, freeing them to focus on the creative, complex, and high-impact work that matters most. Assign an issue to Copilot, wait for the agent to request review, then leave feedback on the pull request to iterate. Learn more about Copilot coding agent
+Internet access
+Ensure that the agent only accesses approved network resources during code generation and execution. Learn more about customizing network access
+Enable firewall
+Recommended
+Limit Copilot coding agent’s Internet access to only allow access to allowlisted locations
+Allowing full internet access may increase data exfiltration risks.
+Off
+Recommended allowlist
+Allow access to locations frequently used to install tools, packages, and dependencies
+On
+Custom allowlist
+Allow access to specific domains, IP addresses, or URLs.
+Model Context Protocol (MCP)
+The MCP is an open standard that defines how applications share context with large language models (LLMs). MCP provides a standardized way to connect AI models to different data sources and tools, enabling them to work together more effectively.
+
+You can use MCP to extend the capabilities of Copilot coding agent by connecting it to other tools and services. Learn how to write your JSON MCP configuration
+MCP configuration
+1
