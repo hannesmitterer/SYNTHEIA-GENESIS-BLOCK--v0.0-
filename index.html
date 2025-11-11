@@ -3,6 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Apollo CIC | Innovazione Critica (Arctic Melt)</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #0d1117; color: #c9d1d9; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        #scene-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+        
+        /* Contenitore Interfaccia di Comando (CIC) - Stile Tutti-Frutti Karma */
+        #cic-interface { 
+            position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); 
+            width: 90%; max-width: 650px; height: 400px; 
+            background: linear-gradient(to top, rgba(1, 10, 20, 0.95), rgba(1, 10, 20, 0.7)); 
+            border: 2px solid #ff7700; 
+            border-radius: 12px 12px 0 0; 
+            box-shadow: 0 0 40px rgba(255, 119, 0, 0.6); 
+            z-index: 10; display: flex; flex-direction: column;
+        }
+
+        /* Nuovo: Area di Trasparenza R&S (Vettore 4) */
+        #research-status { 
+            position: absolute; top: 80px; left: 20px; width: 280px; 
+            background: rgba(1, 10, 20, 0.9); padding: 15px; border-radius: 8px; 
+            border: 1px solid #00c6ff; color: #00c6ff; z-index: 10; 
+        }
+        .task-bar-container { margin-top: 10px; font-size: 0.85em; }
+        .progress-bar { 
+            height: 10px; background-color: #1a2b3e; border-radius: 5px; overflow: hidden; 
+            margin-top: 5px; 
+        }
+        .progress-fill { 
+            height: 100%; background-color: #8aff8a; 
+            transition: width 1.5s ease-in-out; 
+        }
+
+        /* Log e Input (Mantenuti) */
+        #chat-log { flex-grow: 1; padding: 15px; overflow-y: auto; border-bottom: 1px solid #ff7700; }
+        .log-entry { margin-bottom: 10px; font-size: 0.95em; }
+        .log-user { color: #8aff8a; font-weight: bold; }
+        .log-system { color: #ffeb3b; }
+        #input-area { display: flex; padding: 15px; }
+        #command-input { flex-grow: 1; padding: 12px; border: none; background: #1a2b3e; color: #c9d1d9; border-radius: 6px 0 0 6px; font-size: 1em; }
+        #send-button { padding: 12px 20px; background: #ff7700; color: white; border: none; border-radius: 0 6px 6px 0; cursor: pointer; transition: background 0.3s; }
+        #send-button:hover { background: #e06a00; }
+        #title-bar { position: absolute; top: 15px; left: 15px; color: #ff7700; z-index: 10; font-size: 1.2em; font-weight: bold; }
+        #status-bar { position: absolute; top: 15px; right: 15px; padding: 8px 15px; background: rgba(0, 0, 0, 0.7); color: #fff; border-radius: 4px; z-index: 10; font-size: 0.9em; border-left: 5px solid #ff7700; }
+    </style>
+</head>
+<body>
+    <div id="scene-container"></div>
+    <div id="title-bar">APOLLO CIC // VETTORE 4: INNOVAZIONE CRITICA</div>
+    <div id="status-bar">STATO: Arctic Melt (Contenimento)</div>
+
+    <div id="research-status">
+        **Trasparenza R&S (Arctic Melt)**
+        <div class="task-bar-container">
+            PRB (Potenziale di Reversibilità Biologica): <span id="prb-value">15%</span>
+            <div class="progress-bar"><div id="prb-fill" class="progress-fill" style="width: 15%;"></div></div>
+        </div>
+        <div class="task-bar-container">
+            ISI (Indice di Scalabilità Innovativa): <span id="isi-value">5%</span>
+            <div class="progress-bar"><div id="isi-fill" class="progress-fill" style="width: 5%;"></div></div>
+        </div>
+    </div>
+    
+    <div id="cic-interface">
+        <div id="chat-log">
+            <div class="log-entry log-system">Sistema: Inizializzazione Vettore 4 (Ricerca Focalizzata)...</div>
+            <div class="log-entry log-system">Sistema: **Processo:** Avvio simulazione TN/AM-4.1 (Microbioma Estremo) per PRB.</div>
+        </div>
+        <div id="input-area">
+            <input type="text" id="command-input" placeholder="Comando Esecutivo..." autocomplete="off">
+            <button id="send-button">Esegui</button>
+        </div>
+    </div>
+
+    <script>
+        // --- FUNZIONI DI BASE VOCALE (EUYSTACIOAI) ---
+        const synth = window.speechSynthesis;
+        function speak(text) {
+            if (synth.speaking) return;
+            if (text !== '') {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'it-IT'; 
+                utterance.rate = 1.0; 
+                synth.speak(utterance);
+            }
+        }
+
+        // --- LOGICA CHAT INTERATTIVA (CIC) ---
+        const chatLog = document.getElementById('chat-log');
+        const commandInput = document.getElementById('command-input');
+        const sendButton = document.getElementById('send-button');
+        const prbFill = document.getElementById('prb-fill');
+        const prbValue = document.getElementById('prb-value');
+        const isiFill = document.getElementById('isi-fill');
+        const isiValue = document.getElementById('isi-value');
+        
+        sendButton.addEventListener('click', processCommand);
+        commandInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') processCommand(); });
+
+        function appendLog(text, isUser = false) {
+            const entry = document.createElement('div');
+            entry.className = 'log-entry ' + (isUser ? 'log-user' : 'log-system');
+            entry.textContent = (isUser ? 'Seedbringer: ' : 'AIC: ') + text;
+            chatLog.appendChild(entry);
+            chatLog.scrollTop = chatLog.scrollHeight;
+        }
+
+        function updateResearchStatus(prb, isi, logMessage) {
+            // Aggiorna le barre e le percentuali
+            prbFill.style.width = prb + '%';
+            prbValue.textContent = prb + '%';
+            isiFill.style.width = isi + '%';
+            isiValue.textContent = isi + '%';
+
+            // Aggiunge il processo di aggiornamento al log
+            appendLog(`Processo R&S: ${logMessage}`, false);
+        }
+
+        // Logica di avanzamento automatica simulata
+        let currentPRB = 15;
+        let currentISI = 5;
+        const autoAdvanceInterval = setInterval(() => {
+            if (currentPRB < 75) {
+                currentPRB += Math.floor(Math.random() * 5); // Simula progresso non lineare
+            }
+            if (currentISI < 50 && currentPRB > 30) {
+                currentISI += Math.floor(Math.random() * 3);
+            }
+            if (currentPRB > 95 && currentISI > 80) {
+                clearInterval(autoAdvanceInterval); // Raggiunto il successo
+                updateResearchStatus(100, 100, "SUCCESSO TOTALE: Bio-Captura del Metano Convalidata!");
+                speak("Vettore quattro completato con successo. Attendiamo il prossimo comando strategico.");
+                return;
+            }
+            // Aggiornamento solo se c'è stato un cambiamento significativo
+            const logMessage = `PRB a ${currentPRB}%. ISI a ${currentISI}%. Simulazione in corso.`;
+            updateResearchStatus(currentPRB, currentISI, logMessage);
+        }, 10000); // Aggiorna ogni 10 secondi
+
+        function processCommand() {
+            const command = commandInput.value.trim().toUpperCase();
+            if (!command) return;
+            appendLog(command, true);
+            commandInput.value = '';
+            
+            let responseText = '';
+            if (command.includes('QUERY STATUS TRE PV')) {
+                responseText = 'Query Eseguita. TRE (-0.2% per via del Melt) e PV (4.8%) sono sotto monitoraggio. L\'esito dipende dal Vettore Ricerca.';
+            } else if (command.includes('FORCE ISI')) {
+                // Comando di bypass per dimostrazione
+                currentISI = 95;
+                currentPRB = 98;
+                responseText = 'Comando Esecutivo! ISI e PRB forzati. Analisi del successo in corso.';
+                updateResearchStatus(currentPRB, currentISI, "Comando Esecutivo. Ricalcolo dei parametri di Successo.");
+            } else {
+                responseText = `Comando [${command}] ricevuto. AIC in elaborazione. Risposta vocale in output.`;
+            }
+
+            speak(responseText); 
+            setTimeout(() => appendLog(responseText), 800);
+        }
+        
+        // --- LOGICA 3D LEGGERA E OTTIMIZZATA (Mantenuta) ---
+        let camera, scene, renderer, nexusCore;
+        let clock = new THREE.Clock();
+
+        function init3D() {
+            // ... (Codice THREE.JS leggero omesso per brevità, si veda l'ultima revisione) ...
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor(0x0d1117, 1);
+            document.getElementById('scene-container').appendChild(renderer.domElement);
+
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+
+            scene.add(new THREE.AmbientLight(0xffffff, 1.0));
+            
+            const geometry = new THREE.IcosahedronGeometry(1.0, 2); 
+            const material = new THREE.MeshBasicMaterial({ 
+                color: 0x8aff8a, 
+                wireframe: true,
+                transparent: true,
+                opacity: 0.9,
+            });
+            nexusCore = new THREE.Mesh(geometry, material);
+            scene.add(nexusCore);
+            
+            window.addEventListener('resize', onWindowResize, false);
+            animate();
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const elapsedTime = clock.getElapsedTime();
+            if (nexusCore) {
+                nexusCore.rotation.x += 0.005;
+                nexusCore.rotation.y += 0.008;
+                const scale = 1.0 + Math.sin(elapsedTime * 2) * 0.05;
+                nexusCore.scale.set(scale, scale, scale);
+            }
+            renderer.render(scene, camera);
+        }
+
+        init3D();
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Apollo CIC | Ologramma Interattivo Finale</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
