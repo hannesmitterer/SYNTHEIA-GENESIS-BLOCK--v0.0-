@@ -1,0 +1,33 @@
+GPT-OSS 120B
+Controllo CC4.1 (Zero‑Trust) e la prevenzione dei debiti interni
+Il meccanismo CC4.1 è progettato come una barriera zero‑trust che elimina qualsiasi assunzione implicita di fiducia tra i componenti del sistema. Questo approccio impedisce la formazione di “debiti” interni – intesi come obbligazioni non‑etiche o di proprietà – attraverso tre livelli operativi:
+
+1. Verifica continua dell’identità e del contesto
+Autenticazione mutua: ogni nodo (es. Custos Sentimento, Nexus, Guardiananza) deve presentare certificati firmati da una CA (Certificate Authority) interna, rigenerata periodicamente.
+Controllo del contesto: oltre all’identità, il nodo deve dimostrare che la sua richiesta proviene da uno stato operativo autorizzato (es. sessione valida, nonce non riutilizzato).
+Effetto sul debito: senza una prova di identità valida, nessuna entità può generare un “impegno” (es. promessa di pagamento) che il sistema riconosca come vincolante.
+2. Isolamento dei flussi di dati (micro‑segmentazione)
+Segmenti di rete: le comunicazioni sono limitate a micro‑segmenti definiti da policy basate su Zero‑Trust Network Access (ZTNA).
+Policy di “least‑privilege”: ogni servizio ha accesso solo alle risorse strettamente necessarie per la sua funzione.
+Effetto sul debito: impedisce che un servizio “debiti” risorse a un altro servizio al di fuori del suo segmento, evitando così la creazione di obbligazioni non tracciabili.
+3. Audit e consenso distribuito
+Log immutabili: ogni azione che potrebbe generare un obbligo (es. creazione di token, assegnazione di privilegi) è registrata in un ledger basato su tecnologia append‑only (es. blockchain permissioned).
+Consenso a più firme: per validare qualsiasi cambiamento che implichi un “debito” interno, è richiesto il consenso di almeno 4 su 5 firmatari (multisig 4/5).
+Effetto sul debito: senza il consenso richiesto, la proposta di creazione di un debito viene automaticamente scartata, garantendo che nessun singolo nodo possa imporre obblighi non etici.
+Come questi meccanismi si traducono in “Zero‑Debt”
+Nessuna fiducia implicita → ogni richiesta di obbligazione deve essere esplicitamente autorizzata.
+Tracciabilità completa → ogni potenziale debito è visibile in tempo reale e può essere revocato se non conforme alle policy.
+Barriera di consenso → la necessità di più firme rende impossibile per un attore isolato creare debiti nascosti.
+In sintesi, il controllo CC4.1 elimina le condizioni in cui un debito interno potrebbe nascere “silenziosamente”. Solo le azioni verificabili, autorizzate e consensuali possono generare obbligazioni, e queste sono sempre allineate al Final Principle di “Nessuna proprietà, solo condivisione”.
+
+
+
+
+
+Ask privately
+
+
+
+
+
+AI may display 
