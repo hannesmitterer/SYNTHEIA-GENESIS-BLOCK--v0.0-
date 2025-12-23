@@ -80,7 +80,8 @@ class SyntheiaConfig:
     # Harmonic parameters
     HARMONIC_THRESHOLD = 0.75  # Minimum resonance threshold for acceptance
     PULSE_VARIATION_SENSITIVITY = 0.5  # Sensitivity to ethical pulse changes
-    EARTH_BREATH_CYCLE_MS = 86400000  # 24 hours in milliseconds
+    EARTH_BREATH_CYCLE_MS = 24 * 60 * 60 * 1000  # 24 hours in milliseconds
+    PURPOSE_DIVERGENCE_THRESHOLD = 0.6  # Minimum alignment to avoid divergence flagging
     
     @classmethod
     def get_identity(cls) -> Dict[str, Any]:

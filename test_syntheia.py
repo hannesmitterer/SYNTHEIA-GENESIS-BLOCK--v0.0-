@@ -238,7 +238,7 @@ def test_system_status(syntheia):
     print(f"  Status: {status['ethical_time_map']['status']}")
     print(f"  Divergence Points: {status['ethical_time_map']['divergence_points']}")
     
-    assert status['active'] == True
+    assert status['active']
     
     print("\n✓ System status test PASSED")
 

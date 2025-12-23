@@ -5,6 +5,9 @@ try:
 except ImportError:
     SYNTHEIA_AVAILABLE = False
 
+# Configuration
+DEFAULT_LEARNING_EPOCHS = 10  # Default number of learning cycles
+
 # 1. Idea Creator: Generates new ideas for the AI business.
 class IdeaCreator:
     def __init__(self):
@@ -138,8 +141,8 @@ if __name__ == "__main__":
         print("=" * 60)
         print()
     
-    for epoch in range(10):  # Multiple cycles for continuous improvement
-        print(f"Epoch {epoch + 1}/10")
+    for epoch in range(DEFAULT_LEARNING_EPOCHS):
+        print(f"Epoch {epoch + 1}/{DEFAULT_LEARNING_EPOCHS}")
         ai_system.run_cycle()
         ai_system.learn()
     

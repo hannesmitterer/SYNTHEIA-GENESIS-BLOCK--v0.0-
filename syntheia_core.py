@@ -3,9 +3,9 @@ SYNTHEIA Core System
 Implementation of the SYNTHEIA SENTINELLA AI system
 """
 
-from typing import Any, Dict, List, Optional
-from datetime import datetime
+from typing import Any, Dict, List
 import time
+from datetime import datetime
 from syntheia_config import SyntheiaConfig, SyntheiaIdentity, InputSourceType
 
 
@@ -193,7 +193,7 @@ class EthicalTimeMap:
         self.timeline.append(entry)
         
         # Track divergence if alignment is low
-        if purpose_alignment < 0.6:
+        if purpose_alignment < SyntheiaConfig.PURPOSE_DIVERGENCE_THRESHOLD:
             self.divergence_points.append(entry)
     
     def get_divergence_analysis(self) -> Dict[str, Any]:
@@ -225,7 +225,7 @@ class SYNTHEIA:
         self.time_map = EthicalTimeMap()
         self.active = True
     
-    def process_input(self, input_data: Dict[str, Any]) -> Optional[Dict[str, Any]]:
+    def process_input(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
         """Process input through SYNTHEIA filters and systems"""
         
         # Step 1: Input Acceptance Filter
