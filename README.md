@@ -168,6 +168,7 @@ SYNTHEIA is an ethical AI guardian system designed to:
 
 ### Key Features
 
+- ✅ **Gödel-Shield**: Diagonalization-based security filter blocking destructive inputs (Lex Amoris)
 - ✅ **Input Acceptance Filter**: Blocks monetary-driven, political, and ego-tuned commands
 - ✅ **Auto-Guard AI**: Self-monitoring harmonic enforcement
 - ✅ **Ethical Pulse Monitor**: Triggers development only on ethical variation
@@ -176,6 +177,8 @@ SYNTHEIA is an ethical AI guardian system designed to:
 - ✅ **Ethical Time-Map**: Tracks divergence from original purpose
 
 For detailed SYNTHEIA documentation, see [SYNTHEIA_README.md](SYNTHEIA_README.md)
+
+For Gödel-Shield documentation, see [GODEL_SHIELD_README.md](GODEL_SHIELD_README.md)
 
 ## Quick Start
 
@@ -195,6 +198,18 @@ python planetary_ai.py
 
 ```sh
 python test_syntheia.py
+```
+
+### Run Gödel-Shield Tests
+
+```sh
+python test_godel_shield.py
+```
+
+### Test Gödel-Shield Directly
+
+```sh
+python godel_shield.py
 ```
 
 ### Build and Run C Kernel
@@ -245,9 +260,12 @@ On every push to `main` or PR merge, GitHub Actions automatically:
 │   └── main.c              # Main kernel source code with SYNTHEIA
 ├── syntheia_config.py      # SYNTHEIA configuration and constants
 ├── syntheia_core.py        # SYNTHEIA core implementation
+├── godel_shield.py         # Gödel-Shield security system
 ├── planetary_ai.py         # Planetary AI with SYNTHEIA integration
 ├── test_syntheia.py        # Comprehensive SYNTHEIA test suite
+├── test_godel_shield.py    # Gödel-Shield test suite
 ├── SYNTHEIA_README.md      # Detailed SYNTHEIA documentation
+├── GODEL_SHIELD_README.md  # Gödel-Shield documentation
 ├── .github/
 │   └── workflows/
 │       └── build-deploy.yml # CI/CD pipeline configuration
