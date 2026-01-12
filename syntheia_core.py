@@ -232,6 +232,8 @@ class SYNTHEIA:
         
         # Step 0: Gödel-Shield Check (First line of defense)
         # Check if input contains text content for shield verification
+        # Note: Empty content is allowed as there's no destructive text to check
+        # Such inputs still pass through other filters (source validation, etc.)
         input_text = input_data.get("content", "")
         if input_text:
             shield_result = self.godel_shield.transmit(input_text)

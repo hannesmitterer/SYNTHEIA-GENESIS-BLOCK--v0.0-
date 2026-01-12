@@ -30,7 +30,8 @@ def test_lex_amoris_filter():
     for text in destructive_inputs:
         contains = LexAmoris.contains_destructive_term(text)
         matched = LexAmoris.get_matched_terms(text)
-        print(f"  Input: '{text[:40]}...' if len(text) > 40 else text")
+        display_text = text[:40] + '...' if len(text) > 40 else text
+        print(f"  Input: '{display_text}'")
         print(f"  Destructive: {contains}, Matched: {matched}")
         assert contains, f"Failed to detect destructive terms in: {text}"
     
