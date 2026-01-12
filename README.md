@@ -212,6 +212,10 @@ python test_godel_shield.py
 python godel_shield.py
 ```
 
+### Gödel-Shield Web Demo
+
+Open `godel_shield_demo.html` in a web browser to test the Gödel-Shield interactively with a visual interface.
+
 ### Build and Run C Kernel
 
 ```sh
@@ -261,6 +265,8 @@ On every push to `main` or PR merge, GitHub Actions automatically:
 ├── syntheia_config.py      # SYNTHEIA configuration and constants
 ├── syntheia_core.py        # SYNTHEIA core implementation
 ├── godel_shield.py         # Gödel-Shield security system
+├── lex-amoris.json         # Lex Amoris configuration (destructive terms)
+├── godel_shield_demo.html  # Interactive web demo for Gödel-Shield
 ├── planetary_ai.py         # Planetary AI with SYNTHEIA integration
 ├── test_syntheia.py        # Comprehensive SYNTHEIA test suite
 ├── test_godel_shield.py    # Gödel-Shield test suite
