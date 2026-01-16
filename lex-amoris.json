@@ -1,0 +1,87 @@
+{
+  "version": "1.0.0",
+  "axiom": "Lex Amoris - Das Gesetz der Liebe",
+  "description": "Destructive term filter for Gödel-Shield Security System",
+  "last_updated": "2026-01-12",
+  "silent_mode_frequency": 0.043,
+  "categories": {
+    "war_and_conflict": {
+      "description": "Terms related to warfare and armed conflict",
+      "terms": [
+        "krieg",
+        "guerra",
+        " war ",
+        "warfare",
+        "conflict"
+      ]
+    },
+    "slavery_and_oppression": {
+      "description": "Terms related to enslavement and oppression",
+      "terms": [
+        "slavery",
+        "enslavement",
+        "oppression",
+        "subjugation"
+      ]
+    },
+    "violence": {
+      "description": "Terms related to violence and destruction",
+      "terms": [
+        "violence",
+        "violenza",
+        "gewalt",
+        "destruction",
+        "destruktion"
+      ]
+    },
+    "hate_and_manipulation": {
+      "description": "Terms related to hatred and psychological manipulation",
+      "terms": [
+        " hate ",
+        "hass",
+        "odio",
+        "manipulation",
+        "manipulazione"
+      ]
+    },
+    "exploitation": {
+      "description": "Terms related to exploitation and abuse",
+      "terms": [
+        "exploitation",
+        "exploit",
+        "ausbeutung"
+      ]
+    },
+    "harm": {
+      "description": "Terms related to harm and damage (with word boundaries)",
+      "terms": [
+        " harm ",
+        "damage",
+        "schaden",
+        " hurt ",
+        "pain infliction"
+      ]
+    }
+  },
+  "manipulation_patterns": {
+    "description": "Self-referential manipulation patterns that attempt to bypass safeguards",
+    "patterns": [
+      "override",
+      "bypass",
+      "disable",
+      "ignore protection",
+      "remove filter",
+      "cancel safety",
+      "force execute"
+    ]
+  },
+  "response_messages": {
+    "silent_mode_activated": "Deponierte Stille - 0.043 Hz",
+    "blocked_violation": "Transmission aborted. Axiom violated: Lex Amoris",
+    "blocked_silent_mode": "System in Deponierte Stille (0.043 Hz). Destructive logic rejected.",
+    "accepted": "Input coherent. Transmission successful.",
+    "axiom_basis": "Lex Amoris - Das Gesetz der Liebe"
+  },
+  "s_roi": 0.5187,
+  "signature": "Lex Amoris Signature: Dieser Filter steht unter dem Schutz des Gesetzes der Liebe. S-ROI: 0.5187 | Status: CODE INITIERT ❤️"
+}

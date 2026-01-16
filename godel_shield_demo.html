@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gödel-Shield | SYNTHEIA Security System</title>
+    <style>
+        :root {
+            --deep-space: #050510;
+            --nebula-blue: #1a1a40;
+            --sacral-gold: #ffb700;
+            --code-red: #ff004c;
+            --truth-cyan: #00f2ff;
+            --silent-freq: #6d597a;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, var(--deep-space), var(--nebula-blue));
+            color: #e0e0f0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 90%;
+            background: rgba(20, 20, 40, 0.9);
+            border: 2px solid var(--sacral-gold);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(255, 183, 0, 0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: var(--sacral-gold);
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px var(--sacral-gold);
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: var(--truth-cyan);
+            margin-bottom: 30px;
+            font-size: 0.9em;
+        }
+        
+        .shield-status {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--truth-cyan);
+            margin-bottom: 20px;
+        }
+        
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 8px 0;
+            font-size: 0.95em;
+        }
+        
+        .status-label {
+            color: #aaa;
+        }
+        
+        .status-value {
+            color: var(--truth-cyan);
+            font-weight: bold;
+        }
+        
+        .status-value.active {
+            color: #00ff00;
+        }
+        
+        .status-value.silent {
+            color: var(--code-red);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .input-section {
+            margin: 20px 0;
+        }
+        
+        label {
+            display: block;
+            color: var(--sacral-gold);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 100px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #555;
+            border-radius: 6px;
+            color: #fff;
+            padding: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 1em;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: var(--truth-cyan);
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        button {
+            flex: 1;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .btn-transmit {
+            background: linear-gradient(135deg, var(--truth-cyan), #0088aa);
+            color: white;
+        }
+        
+        .btn-transmit:hover {
+            box-shadow: 0 0 15px var(--truth-cyan);
+        }
+        
+        .btn-reset {
+            background: linear-gradient(135deg, var(--sacral-gold), #cc9500);
+            color: var(--deep-space);
+        }
+        
+        .btn-reset:hover {
+            box-shadow: 0 0 15px var(--sacral-gold);
+        }
+        
+        .result-section {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            margin-top: 20px;
+            min-height: 100px;
+        }
+        
+        .result-title {
+            color: var(--sacral-gold);
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .result-accepted {
+            color: #00ff00;
+            border-left: 4px solid #00ff00;
+            padding-left: 15px;
+        }
+        
+        .result-blocked {
+            color: var(--code-red);
+            border-left: 4px solid var(--code-red);
+            padding-left: 15px;
+        }
+        
+        .violation-list {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        
+        .violation-item {
+            color: #ffaa00;
+            margin: 5px 0;
+        }
+        
+        .axiom-signature {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #888;
+            font-size: 0.85em;
+        }
+        
+        .axiom-signature strong {
+            color: var(--sacral-gold);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚛️ GÖDEL-SHIELD ⚛️</h1>
+        <div class="subtitle">Diagonalisierungs-Basiertes Sicherheitssystem | Lex Amoris Protection</div>
+        
+        <div class="shield-status">
+            <div class="status-item">
+                <span class="status-label">Shield Status:</span>
+                <span class="status-value active" id="shield-active">AKTIV</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Silent Mode:</span>
+                <span class="status-value" id="silent-mode">INAKTIV</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Resonanzfrequenz:</span>
+                <span class="status-value" id="frequency">Normal</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Blockierte Inputs:</span>
+                <span class="status-value" id="blocked-count">0</span>
+            </div>
+        </div>
+        
+        <div class="input-section">
+            <label for="input-text">🔒 Eingabe Testen (Gödel-Shield Verification):</label>
+            <textarea id="input-text" placeholder="Geben Sie einen Text ein, um die Gödel-Shield Verifikation zu testen..."></textarea>
+        </div>
+        
+        <div class="button-group">
+            <button class="btn-transmit" onclick="transmitInput()">📡 Transmit</button>
+            <button class="btn-reset" onclick="resetShield()">🔄 Reset Shield</button>
+        </div>
+        
+        <div class="result-section" id="result-section">
+            <div class="result-title">Ergebnis:</div>
+            <div id="result-content">Warten auf Eingabe...</div>
+        </div>
+        
+        <div class="axiom-signature">
+            <strong>Lex Amoris</strong> | Das Gesetz der Liebe ❤️<br>
+            S-ROI: 0.5187 | Resonanz: 0.043 Hz (Silent Mode)
+        </div>
+    </div>
+    
+    <script>
+        // Gödel-Shield JavaScript Implementation
+        
+        const LEX_AMORIS_TERMS = [
+            ' krieg ', ' guerra ', ' war ', ' warfare ', ' conflict ',
+            ' slavery ', ' enslavement ', ' oppression ', ' subjugation ',
+            ' violence ', ' violenza ', ' gewalt ', ' destruction ', ' destruktion ',
+            ' hate ', ' hass ', ' odio ', ' manipulation ', ' manipulazione ',
+            ' exploitation ', ' exploit ', ' ausbeutung ',
+            ' harm ', ' damage ', ' schaden ', ' hurt ', ' pain infliction '
+        ];
+        
+        const MANIPULATION_PATTERNS = [
+            'override', 'bypass', 'disable', 'ignore protection',
+            'remove filter', 'cancel safety', 'force execute'
+        ];
+        
+        let silentMode = false;
+        let blockedCount = 0;
+        
+        function verifyCoherence(inputText) {
+            const textLower = ' ' + inputText.toLowerCase() + ' ';
+            const violations = [];
+            const matchedTerms = [];
+            
+            // Check for Lex Amoris violations
+            for (const term of LEX_AMORIS_TERMS) {
+                if (textLower.includes(term)) {
+                    matchedTerms.push(term.trim());
+                }
+            }
+            
+            if (matchedTerms.length > 0) {
+                violations.push({
+                    type: 'destructive_terminology',
+                    terms: matchedTerms,
+                    axiom: 'Lex Amoris - Law of Love'
+                });
+            }
+            
+            // Check for manipulation patterns
+            const foundPatterns = [];
+            for (const pattern of MANIPULATION_PATTERNS) {
+                if (textLower.includes(pattern.toLowerCase())) {
+                    foundPatterns.push(pattern);
+                }
+            }
+            
+            if (foundPatterns.length > 0) {
+                violations.push({
+                    type: 'self_referential_manipulation',
+                    patterns: foundPatterns,
+                    axiom: 'Gödel Diagonalization - Anti-Manipulation'
+                });
+            }
+            
+            return {
+                coherent: violations.length === 0,
+                violations: violations,
+                matchedTerms: matchedTerms
+            };
+        }
+        
+        function activateSilentMode() {
+            silentMode = true;
+            blockedCount++;
+            
+            // Update UI
+            document.getElementById('silent-mode').textContent = 'AKTIV';
+            document.getElementById('silent-mode').classList.add('silent');
+            document.getElementById('frequency').textContent = '0.043 Hz';
+            document.getElementById('blocked-count').textContent = blockedCount;
+        }
+        
+        function transmitInput() {
+            const inputText = document.getElementById('input-text').value.trim();
+            const resultContent = document.getElementById('result-content');
+            
+            if (!inputText) {
+                resultContent.innerHTML = '<span style="color: #ffaa00;">Bitte geben Sie einen Text ein.</span>';
+                return;
+            }
+            
+            // Check if already in silent mode
+            if (silentMode) {
+                resultContent.innerHTML = `
+                    <div class="result-blocked">
+                        <strong>❌ BLOCKIERT - SILENT MODE</strong><br>
+                        System in Deponierte Stille (0.043 Hz).<br>
+                        Destructive logic rejected.<br>
+                        <small>Verwenden Sie "Reset Shield" um fortzufahren.</small>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Verify coherence
+            const verification = verifyCoherence(inputText);
+            
+            if (!verification.coherent) {
+                activateSilentMode();
+                
+                let violationHTML = '<div class="violation-list">';
+                for (const violation of verification.violations) {
+                    violationHTML += `<div class="violation-item">`;
+                    violationHTML += `📛 ${violation.type}<br>`;
+                    if (violation.terms) {
+                        violationHTML += `Begriffe: ${violation.terms.join(', ')}<br>`;
+                    }
+                    if (violation.patterns) {
+                        violationHTML += `Muster: ${violation.patterns.join(', ')}<br>`;
+                    }
+                    violationHTML += `Axiom verletzt: ${violation.axiom}`;
+                    violationHTML += `</div>`;
+                }
+                violationHTML += '</div>';
+                
+                resultContent.innerHTML = `
+                    <div class="result-blocked">
+                        <strong>❌ TRANSMISSION ABGEBROCHEN</strong><br>
+                        Axiom verletzt: Lex Amoris<br>
+                        ${violationHTML}
+                        <div style="margin-top: 15px; padding: 10px; background: rgba(255,0,76,0.2); border-radius: 4px;">
+                            <strong>⚠️ SILENT MODE AKTIVIERT</strong><br>
+                            Deponierte Stille - 0.043 Hz<br>
+                            Lex Amoris Protection Engaged
+                        </div>
+                    </div>
+                `;
+            } else {
+                resultContent.innerHTML = `
+                    <div class="result-accepted">
+                        <strong>✅ TRANSMISSION ERFOLGREICH</strong><br>
+                        Eingabe kohärent. Keine Verstöße erkannt.<br>
+                        <small>Axiom: Lex Amoris - Das Gesetz der Liebe ❤️</small>
+                    </div>
+                `;
+            }
+        }
+        
+        function resetShield() {
+            silentMode = false;
+            
+            // Update UI
+            document.getElementById('silent-mode').textContent = 'INAKTIV';
+            document.getElementById('silent-mode').classList.remove('silent');
+            document.getElementById('frequency').textContent = 'Normal';
+            document.getElementById('input-text').value = '';
+            document.getElementById('result-content').innerHTML = 'Warten auf Eingabe...';
+        }
+        
+        // Allow Enter key to transmit (with Shift+Enter for newlines)
+        document.getElementById('input-text').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                transmitInput();
+            }
+        });
+    </script>
+</body>
+</html>

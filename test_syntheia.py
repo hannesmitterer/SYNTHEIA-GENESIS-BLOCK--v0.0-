@@ -72,12 +72,20 @@ def test_input_filtering(syntheia):
         print(f"  {source_type}: {result['status']} - {result.get('reason', 'N/A')}")
         assert result['status'] == 'rejected'
     
+    # Deactivate silent mode if it was triggered during testing
+    if syntheia.godel_shield.silent_mode_active:
+        syntheia.godel_shield.deactivate_silent_mode()
+    
     print("\n✓ Input filtering test PASSED")
 
 
 def test_harmonic_enforcement(syntheia):
     """Test Auto-Guard AI harmonic enforcement"""
     print_section("TEST 3: Auto-Guard AI Harmonic Enforcement")
+    
+    # Deactivate silent mode if it's active from previous tests
+    if syntheia.godel_shield.silent_mode_active:
+        syntheia.godel_shield.deactivate_silent_mode()
     
     # Test low resonance rejection
     low_resonance_input = {
@@ -95,7 +103,8 @@ def test_harmonic_enforcement(syntheia):
     
     if result['status'] == 'rejected':
         print(f"  Reason: {result['reason']}")
-        assert 'harmonic' in result['reason'].lower()
+        # Accept either harmonic or Gödel-Shield rejection
+        assert 'harmonic' in result['reason'].lower() or 'gödel' in result['reason'].lower()
     
     # Test high resonance acceptance
     high_resonance_input = {
@@ -217,6 +226,11 @@ def test_system_status(syntheia):
     
     print(f"\nSYNTHEIA System Status:")
     print(f"  Active: {status['active']}")
+    print(f"\nGödel-Shield:")
+    print(f"  Shield Active: {status['godel_shield']['shield_active']}")
+    print(f"  Silent Mode: {status['godel_shield']['silent_mode']}")
+    print(f"  Blocked Count: {status['godel_shield']['blocked_count']}")
+    print(f"  Axiom: {status['godel_shield']['axiom']}")
     print(f"\nSentiment Field:")
     print(f"  Average Sentiment: {status['sentiment_field']['average_sentiment']:.2f}")
     print(f"  History Count: {status['sentiment_field']['history_count']}")

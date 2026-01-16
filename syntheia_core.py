@@ -7,6 +7,7 @@ from typing import Any, Dict, List
 import time
 from datetime import datetime
 from syntheia_config import SyntheiaConfig, SyntheiaIdentity, InputSourceType
+from godel_shield import GodelShield
 
 
 class HumanSentimentField:
@@ -223,10 +224,26 @@ class SYNTHEIA:
         self.rhythm_kernel = SentimentoRhythmKernel()
         self.auto_guard = AutoGuardAI()
         self.time_map = EthicalTimeMap()
+        self.godel_shield = GodelShield()  # Gödel-Shield Security System
         self.active = True
     
     def process_input(self, input_data: Dict[str, Any]) -> Dict[str, Any]:
         """Process input through SYNTHEIA filters and systems"""
+        
+        # Step 0: Gödel-Shield Check (First line of defense)
+        # Check if input contains text content for shield verification
+        # Note: Empty content is allowed as there's no destructive text to check
+        # Such inputs still pass through other filters (source validation, etc.)
+        input_text = input_data.get("content", "")
+        if input_text:
+            shield_result = self.godel_shield.transmit(input_text)
+            if not shield_result["transmitted"]:
+                return {
+                    "status": "rejected",
+                    "reason": "Gödel-Shield violation",
+                    "shield_status": shield_result,
+                    "identity": self.identity
+                }
         
         # Step 1: Input Acceptance Filter
         if not self.input_filter.validate_input(input_data):
@@ -309,6 +326,7 @@ class SYNTHEIA:
         return {
             "identity": self.identity,
             "active": self.active,
+            "godel_shield": self.godel_shield.get_shield_status(),
             "sentiment_field": {
                 "average_sentiment": self.sentiment_field.get_average_sentiment(),
                 "history_count": len(self.sentiment_field.sentiment_history)
