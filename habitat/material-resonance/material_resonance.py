@@ -17,6 +17,8 @@ class MaterialResonance:
     All natural building materials have inherent resonance frequencies
     """
     
+    RESONANCE_TOLERANCE = 1.0  # Hz - tolerance for resonance deviation
+    
     def __init__(self, material_name: str, base_frequency: float):
         self.material_name = material_name
         self.base_frequency = base_frequency  # Hz
@@ -33,7 +35,7 @@ class MaterialResonance:
             "measured_frequency": frequency,
             "humidity": humidity,
             "deviation": abs(frequency - self.base_frequency),
-            "status": "RESONANT" if abs(frequency - self.base_frequency) < 1.0 else "DISSONANT"
+            "status": "RESONANT" if abs(frequency - self.base_frequency) < self.RESONANCE_TOLERANCE else "DISSONANT"
         }
         self.measurements.append(measurement)
         return measurement
@@ -145,6 +147,7 @@ class WoodResonance(MaterialResonance):
     
     # Wood resonance varies by species, using general structural frequency
     WOOD_BASE_FREQUENCY = 85.0  # Approximate for structural timber
+    MAX_AGE_YEARS = 50.0  # Age normalization reference (50 years)
     
     def __init__(self, species: str = "generic"):
         super().__init__(f"Wood_{species}", self.WOOD_BASE_FREQUENCY)
@@ -181,7 +184,7 @@ class WoodResonance(MaterialResonance):
         optimal_moisture = 0.10 <= moisture_content <= 0.19
         
         # Age affects resonance - older wood often has better resonance
-        age_factor = min(age_years / 50.0, 1.0)  # Normalized to 50 years
+        age_factor = min(age_years / self.MAX_AGE_YEARS, 1.0)  # Normalized to MAX_AGE_YEARS
         
         analysis = {
             "material": "Wood",
