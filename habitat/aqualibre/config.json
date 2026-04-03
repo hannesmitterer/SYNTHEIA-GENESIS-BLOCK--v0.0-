@@ -1,0 +1,110 @@
+{
+  "version": "1.0.0",
+  "module": "aqualibre-core",
+  "status": "DEPLOYED",
+  "jurisdiction": "Lex Amoris",
+  "deployment_locations": [
+    {
+      "node_id": "MQ-001",
+      "location": "Martinique",
+      "environment": "Oceanic, tropical",
+      "coordinates": {
+        "latitude": 14.6415,
+        "longitude": -61.0242
+      },
+      "water_sources": ["coastal_wells", "rainwater", "desalination"],
+      "sovereignty_target": 1.5
+    },
+    {
+      "node_id": "BZ-001",
+      "location": "Bolzano",
+      "environment": "Alpine, mountain springs",
+      "coordinates": {
+        "latitude": 46.4983,
+        "longitude": 11.3548
+      },
+      "water_sources": ["mountain_springs", "glacial_melt", "rainwater"],
+      "sovereignty_target": 2.0
+    }
+  ],
+  "schumann_lock": {
+    "fundamental_frequency": 7.83,
+    "tolerance": 0.5,
+    "harmonics": [7.83, 14.3, 20.8, 27.3, 33.8],
+    "unit": "Hz"
+  },
+  "nsr_standard": {
+    "forbidden_patterns": [
+      "hidden_fee",
+      "secret_charge",
+      "central_control",
+      "remote_shutdown",
+      "forced_payment",
+      "extraction_tax",
+      "privatization"
+    ],
+    "transparency_required": true,
+    "fee_disclosure_mandatory": true
+  },
+  "s_roi": {
+    "phi": 1.618033988749895,
+    "formula": "W_souverän = (Natural_Inflow / Extraction) × Φ",
+    "sovereignty_threshold": 1.0,
+    "units": {
+      "inflow": "liters/day",
+      "extraction": "liters/day",
+      "regenerated": "liters/day"
+    }
+  },
+  "respect_filter": {
+    "enabled": true,
+    "alert_severity": "CRITICAL",
+    "broadcast_channels": ["ipfs", "github", "mesh_network"],
+    "privatization_keywords": [
+      "claim",
+      "ownership",
+      "exclusive_rights",
+      "patent",
+      "monopoly",
+      "restricted_access",
+      "commercial_control"
+    ]
+  },
+  "sensor_types": {
+    "flow": {
+      "unit": "liters/minute",
+      "range": [0, 1000],
+      "resonance_required": true
+    },
+    "purity": {
+      "unit": "normalized",
+      "range": [0.0, 1.0],
+      "resonance_required": true
+    },
+    "mycelium_filtration": {
+      "unit": "normalized",
+      "range": [0.0, 1.0],
+      "resonance_required": true
+    }
+  },
+  "mesh_network": {
+    "protocol": "decentralized",
+    "storage": ["ipfs", "github"],
+    "integrity_reporting_interval": 3600,
+    "node_sync_enabled": true
+  },
+  "integration": {
+    "syntheia_framework": true,
+    "godel_shield": true,
+    "lex_amoris": true,
+    "resonance_engine": true
+  },
+  "next_modules": [
+    "material-resonance-hemp",
+    "material-resonance-earth",
+    "material-resonance-wood"
+  ],
+  "signature": "Lex Amoris Signature: 📜⚖️❤️☮️",
+  "motto": "Water is sovereign. One Love First.",
+  "timestamp": "2026-04-03T00:00:00Z"
+}
