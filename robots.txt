@@ -1,0 +1,23 @@
+# SYNTHEIA Genesis Block - Robots.txt
+# Allow all search engines to index the site
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://hannesmitterer.github.io/SYNTHEIA-GENESIS-BLOCK--v0.0-/sitemap.xml
+
+# Disallow crawling of build artifacts
+Disallow: /_site/
+Disallow: /node_modules/
+Disallow: /.git/
+
+# Allow important files
+Allow: /index.html
+Allow: /godel_shield_demo.html
+Allow: /README.md
+Allow: /SYNTHEIA_README.md
+Allow: /assets/
+
+# Crawl delay (be nice to search engines)
+Crawl-delay: 10

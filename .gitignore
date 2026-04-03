@@ -41,3 +41,6 @@ wheels/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Website build directory
+_site/
