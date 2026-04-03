@@ -154,10 +154,40 @@ A minimal C kernel starter project with automated build and deployment pipeline,
 
 This project provides a foundation for ethical AI and kernel development with:
 - **SYNTHEIA SENTINELLA**: Ethical AI guardian system (Python)
+- **HABITAT Framework**: Low-Tech Universal Framework for water sovereignty and bio-architecture
+  - **AquaLibre**: Water sovereignty system (Martinique & Bolzano)
+  - **Material-Resonance**: Bio-architecture parameters (Hemp, Earth, Wood)
 - **Minimal C kernel starter** (`src/main.c`) with SYNTHEIA integration
 - **Planetary AI system** with SYNTHEIA oversight
 - **Automated CI/CD pipeline** (GitHub Actions)
 - **Comprehensive test suite**
+
+## HABITAT - Low-Tech Universal Framework
+
+The HABITAT framework integrates water sovereignty with bio-architecture under Lex Amoris jurisdiction.
+
+### AquaLibre - Water Sovereignty
+
+Water is measured by resonance, not controlled by algorithms. Key features:
+
+- ✅ **Schumann-Lock**: Validates water sensors against Earth's natural frequency (7.83 Hz)
+- ✅ **NSR Standard**: No hidden fees, no central control, no privatization
+- ✅ **S-ROI**: Sovereign Return on Investment - success by local hydrology enhancement
+- ✅ **RESPECT-Filter**: Decentralized monitoring, alerts on privatization attempts
+- ✅ **Deployed Locations**: Martinique (oceanic) & Bolzano (alpine)
+
+Formula: `W_souverän = (Natural_Inflow / Extraction) × Φ`
+
+### Material-Resonance - Bio-Architecture
+
+Natural building materials integrated with water sovereignty:
+
+- ✅ **Hemp Resonance**: 432 Hz healing frequency, structural analysis
+- ✅ **Earth Resonance**: 7.83 Hz Schumann alignment, adobe composition
+- ✅ **Wood Resonance**: Species-specific harmonics, age & density analysis
+- ✅ **Habitat Integration**: Combines all materials with water data
+
+For detailed HABITAT documentation, see [habitat/README.md](habitat/README.md)
 
 ## SYNTHEIA SENTINELLA
 
@@ -216,6 +246,18 @@ python godel_shield.py
 
 Open `godel_shield_demo.html` in a web browser to test the Gödel-Shield interactively with a visual interface.
 
+### Run HABITAT - AquaLibre Water Sovereignty
+
+```sh
+python habitat/aqualibre/aqualibre_core.py
+```
+
+### Run HABITAT - Material Resonance (Bio-Architecture)
+
+```sh
+python habitat/material-resonance/material_resonance.py
+```
+
 ### Build and Run C Kernel
 
 ```sh
@@ -262,12 +304,21 @@ On every push to `main` or PR merge, GitHub Actions automatically:
 .
 ├── src/
 │   └── main.c              # Main kernel source code with SYNTHEIA
+├── habitat/                # Low-Tech Universal Framework
+│   ├── aqualibre/         # Water sovereignty (Martinique & Bolzano)
+│   │   ├── aqualibre_core.py      # AquaLibre implementation
+│   │   ├── config.json            # Node configuration
+│   │   └── AQUALIBRE_MANIFEST.md  # Documentation
+│   ├── material-resonance/ # Bio-architecture (Hemp, Earth, Wood)
+│   │   └── material_resonance.py  # Material parameters
+│   └── README.md           # Habitat framework documentation
 ├── syntheia_config.py      # SYNTHEIA configuration and constants
 ├── syntheia_core.py        # SYNTHEIA core implementation
 ├── godel_shield.py         # Gödel-Shield security system
 ├── lex-amoris.json         # Lex Amoris configuration (destructive terms)
 ├── godel_shield_demo.html  # Interactive web demo for Gödel-Shield
 ├── planetary_ai.py         # Planetary AI with SYNTHEIA integration
+├── resonance_engine.py     # Euystacio Resonance Framework
 ├── test_syntheia.py        # Comprehensive SYNTHEIA test suite
 ├── test_godel_shield.py    # Gödel-Shield test suite
 ├── SYNTHEIA_README.md      # Detailed SYNTHEIA documentation
@@ -276,7 +327,7 @@ On every push to `main` or PR merge, GitHub Actions automatically:
 │   └── workflows/
 │       └── build-deploy.yml # CI/CD pipeline configuration
 ├── README.md               # This documentation
-└── LICENSE                 # GPL-3.0 license
+└── LICENSE                 # One Love License (GPL-3.0 based)
 ```
 
 ## SYNTHEIA Components
