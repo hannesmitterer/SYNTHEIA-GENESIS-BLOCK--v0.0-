@@ -24,4 +24,10 @@
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
+    <url>
+        <loc>https://hannesmitterer.github.io/SYNTHEIA-GENESIS-BLOCK--v0.0-/files.html</loc>
+        <lastmod>2026-04-03</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.3</priority>
+    </url>
 </urlset>

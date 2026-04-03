@@ -22,6 +22,14 @@ Demonstration of the ethical content filtering system:
 
 **Access:** [godel_shield_demo.html](godel_shield_demo.html)
 
+### 3. **Files Navigation** (Auto-generated)
+Simple navigation page listing all available website resources:
+- Quick links to main pages
+- Documentation access
+- Auto-generated during build process
+
+**Access:** [files.html](files.html)
+
 ## 🚀 Quick Start
 
 ### Local Development
