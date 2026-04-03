@@ -39,6 +39,17 @@ if [ -f "lex-amoris.json" ]; then
     echo "✓ Copied lex-amoris.json"
 fi
 
+# Copy SEO files
+if [ -f "sitemap.xml" ]; then
+    cp sitemap.xml "$BUILD_DIR/"
+    echo "✓ Copied sitemap.xml"
+fi
+
+if [ -f "robots.txt" ]; then
+    cp robots.txt "$BUILD_DIR/"
+    echo "✓ Copied robots.txt"
+fi
+
 # Copy assets directory if it exists
 if [ -d "assets" ]; then
     cp -r assets "$BUILD_DIR/"

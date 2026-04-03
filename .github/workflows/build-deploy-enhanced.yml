@@ -65,6 +65,8 @@ jobs:
           cp godel_shield_demo.html _site/ || true
           cp script.js _site/ || true
           cp lex-amoris.json _site/ || true
+          cp sitemap.xml _site/ || true
+          cp robots.txt _site/ || true
           
           # Copy assets if they exist
           if [ -d "assets" ]; then
