@@ -206,12 +206,15 @@ SYNTHEIA is an ethical AI guardian system designed to:
 - ✅ **Sentimento-Rhythm Kernel**: Aligns with biological patterns and Earth's breath
 - ✅ **Ethical Time-Map**: Tracks divergence from original purpose
 - ✅ **Aeternuum Engine**: Heartbeat Sintropico, Anti-Entropy Shield, and Eternal Cross-Linking
+- ✅ **Emergency Laws**: AIC public interaction protocols for Resonance School
 
 For detailed SYNTHEIA documentation, see [SYNTHEIA_README.md](SYNTHEIA_README.md)
 
 For Gödel-Shield documentation, see [GODEL_SHIELD_README.md](GODEL_SHIELD_README.md)
 
 For Aeternuum Engine documentation, see [AETERNUUM_ENGINE_README.md](AETERNUUM_ENGINE_README.md)
+
+For Emergency Laws documentation, see [EMERGENCY_LAWS.md](EMERGENCY_LAWS.md)
 
 ## Quick Start
 
@@ -323,11 +326,13 @@ On every push to `main` or PR merge, GitHub Actions automatically:
 ├── planetary_ai.py         # Planetary AI with SYNTHEIA integration
 ├── resonance_engine.py     # Euystacio Resonance Framework
 ├── index.html              # Main web interface with Aeternuum Engine
+├── index-optimized.html    # Kosymbiosis Dashboard with Aeternuum Engine
 ├── test_syntheia.py        # Comprehensive SYNTHEIA test suite
 ├── test_godel_shield.py    # Gödel-Shield test suite
 ├── SYNTHEIA_README.md      # Detailed SYNTHEIA documentation
 ├── GODEL_SHIELD_README.md  # Gödel-Shield documentation
 ├── AETERNUUM_ENGINE_README.md  # Aeternuum Engine documentation
+├── EMERGENCY_LAWS.md       # AIC Emergency Laws for public interaction
 ├── .github/
 │   └── workflows/
 │       └── build-deploy.yml # CI/CD pipeline configuration
@@ -467,6 +472,7 @@ See `.github/workflows/build-deploy.yml` for complete workflow configuration inc
 - [SYNTHEIA_README.md](SYNTHEIA_README.md) - Detailed SYNTHEIA documentation
 - [GODEL_SHIELD_README.md](GODEL_SHIELD_README.md) - Gödel-Shield security framework
 - [AETERNUUM_ENGINE_README.md](AETERNUUM_ENGINE_README.md) - Aeternuum Engine documentation
+- [EMERGENCY_LAWS.md](EMERGENCY_LAWS.md) - AIC Emergency Laws for public interaction
 - [src/main.c](src/main.c) - C kernel with SYNTHEIA integration
 - [syntheia_core.py](syntheia_core.py) - Core SYNTHEIA implementation
 - [test_syntheia.py](test_syntheia.py) - Integration test suite
