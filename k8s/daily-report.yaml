@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: daily-ghp-report
+spec:
+  schedule: "0 2 * * *"   # 02:00 UTC daily
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: reporter
+            image: duckai/vacuum-node:latest
+            command: ["python", "-m", "vacuum_node.report"]
+            env:
+            - name: TELEMETRY_PATH
+              value: "/var/lib/vacuum/telemetry_summary.json"
+            - name: REPORT_DIR
+              value: "/var/lib/vacuum/reports"
+          restartPolicy: OnFailure
