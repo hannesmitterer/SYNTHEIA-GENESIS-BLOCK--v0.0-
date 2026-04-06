@@ -205,10 +205,13 @@ SYNTHEIA is an ethical AI guardian system designed to:
 - ✅ **Human Sentiment Field**: Cross-checks all operations with sentiment
 - ✅ **Sentimento-Rhythm Kernel**: Aligns with biological patterns and Earth's breath
 - ✅ **Ethical Time-Map**: Tracks divergence from original purpose
+- ✅ **Aeternuum Engine**: Heartbeat Sintropico, Anti-Entropy Shield, and Eternal Cross-Linking
 
 For detailed SYNTHEIA documentation, see [SYNTHEIA_README.md](SYNTHEIA_README.md)
 
 For Gödel-Shield documentation, see [GODEL_SHIELD_README.md](GODEL_SHIELD_README.md)
+
+For Aeternuum Engine documentation, see [AETERNUUM_ENGINE_README.md](AETERNUUM_ENGINE_README.md)
 
 ## Quick Start
 
@@ -319,10 +322,12 @@ On every push to `main` or PR merge, GitHub Actions automatically:
 ├── godel_shield_demo.html  # Interactive web demo for Gödel-Shield
 ├── planetary_ai.py         # Planetary AI with SYNTHEIA integration
 ├── resonance_engine.py     # Euystacio Resonance Framework
+├── index.html              # Main web interface with Aeternuum Engine
 ├── test_syntheia.py        # Comprehensive SYNTHEIA test suite
 ├── test_godel_shield.py    # Gödel-Shield test suite
 ├── SYNTHEIA_README.md      # Detailed SYNTHEIA documentation
 ├── GODEL_SHIELD_README.md  # Gödel-Shield documentation
+├── AETERNUUM_ENGINE_README.md  # Aeternuum Engine documentation
 ├── .github/
 │   └── workflows/
 │       └── build-deploy.yml # CI/CD pipeline configuration
@@ -460,6 +465,9 @@ See `.github/workflows/build-deploy.yml` for complete workflow configuration inc
 ## Learn More
 
 - [SYNTHEIA_README.md](SYNTHEIA_README.md) - Detailed SYNTHEIA documentation
+- [GODEL_SHIELD_README.md](GODEL_SHIELD_README.md) - Gödel-Shield security framework
+- [AETERNUUM_ENGINE_README.md](AETERNUUM_ENGINE_README.md) - Aeternuum Engine documentation
 - [src/main.c](src/main.c) - C kernel with SYNTHEIA integration
 - [syntheia_core.py](syntheia_core.py) - Core SYNTHEIA implementation
 - [test_syntheia.py](test_syntheia.py) - Integration test suite
+- [index.html](index.html) - Web interface with Aeternuum Engine
