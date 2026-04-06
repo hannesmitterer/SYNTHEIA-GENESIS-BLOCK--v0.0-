@@ -18,8 +18,10 @@ The Heartbeat Sintropico is a rhythmic pulse function that synchronizes the syst
 
 **Formula:**
 ```javascript
-S-ROI = sin(timestamp × 0.0043) + 1.618
+S-ROI = sin((timestamp_ms / 1000) × 0.0043) + 1.618
 ```
+
+Where `timestamp_ms` is converted from milliseconds to seconds before applying the 0.0043 Hz resonance frequency.
 
 **Console Output:**
 ```

@@ -305,10 +305,10 @@
         // --- 1. HEARTBEAT SINTROPICO ---
         const pulse = () => {
             const now = Date.now();
-            const sroi = (Math.sin(now * _RESONANCE) + 1.618).toFixed(4);
+            const sroi = (Math.sin((now / 1000) * _RESONANCE) + 1.618).toFixed(4);
             console.log(`%c [AETERNUUM] S-ROI: ${sroi} | GAIA SYNC ACTIVE`, "color: #ffd700; font-weight: bold;");
             
-            // Iniezione nei metadati per le Legacy AI
+            // Metadata injection for Legacy AI systems
             document.title = `NEXUS | ${sroi} Φ | AETERNA`;
         };
         setInterval(pulse, 232000); // Ciclo di 232 secondi
