@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: consensus-snapshot
+spec:
+  schedule: "0 */24 * * *"   # täglich um Mitternacht UTC
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: snapshot
+            image: duckai/vacuum-node:latest
+            command: ["python", "-m", "vacuum_node.snapshot"]
+            env:
+            - name: CHAIN_ENDPOINT
+              value: "http://blockchain:8545"
+            - name: ROOT_HASH
+              valueFrom:
+                configMapKeyRef:
+                  name: ghp-manifest
+                  key: rootHash
+            - name: MANIFEST_PATH
+              value: "/etc/vacuum/ghp-manifest.json"
+          restartPolicy: OnFailure
