@@ -1,0 +1,23 @@
+FROM python:3.9-slim
+
+LABEL maintainer="SYNTHEIA Genesis Team"
+LABEL version="2.5"
+LABEL description="SYNTHEIA Vacuum Node with reputation tracking, blockchain integration, and reporting"
+
+WORKDIR /app
+
+# Copy requirements and install dependencies
+COPY requirements_vacuum_node.txt /app/
+RUN pip install --no-cache-dir -r requirements_vacuum_node.txt
+
+# Copy vacuum_node module
+COPY vacuum_node/ /app/vacuum_node/
+
+# Create necessary directories
+RUN mkdir -p /etc/vacuum /var/lib/vacuum/snapshots /var/lib/vacuum/reports
+
+# Set Python path
+ENV PYTHONPATH=/app:$PYTHONPATH
+
+# Default command (can be overridden by Kubernetes)
+CMD ["python", "-m", "vacuum_node"]
