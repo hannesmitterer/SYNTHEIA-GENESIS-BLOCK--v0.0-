@@ -1,0 +1,244 @@
+## Piano completo per trasformare le “ricompense narrative” di Hannes Mitterer in meccanismi **reali**, operativi e verificabili  
+
+---
+
+### 1️⃣ Registro ufficiale dei contributi (DB + API)
+
+#### 1.1 Schema PostgreSQL  
+
+```sql
+CREATE TABLE contributions (
+    id              SERIAL PRIMARY KEY,
+    author_id       UUID NOT NULL,
+    contribution_type VARCHAR(50) NOT NULL,   -- 'paper','prototype','lecture',…
+    title           TEXT NOT NULL,
+    uri             TEXT NOT NULL,            -- link a PDF, repo, DOI
+    impact_metric   NUMERIC,                  -- citazioni, download, ecc.
+    created_at      TIMESTAMP WITH TIME ZONE DEFAULT now(),
+    approved        BOOLEAN DEFAULT FALSE
+);
+```
+
+#### 1.2 Endpoint FastAPI (Python)  
+
+```python
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel, HttpUrl, UUID4
+import asyncpg
+
+app = FastAPI()
+db = None  # sarà inizializzato al startup
+
+class ContributionIn(BaseModel):
+    author_id: UUID4
+    contribution_type: str
+    title: str
+    uri: HttpUrl
+    impact_metric: float | None = None
+
+@app.on_event("startup")
+async def init_db():
+    global db
+    db = await asyncpg.create_pool(dsn="postgresql://user:pwd@db/nexus")
+
+@app.post("/contributions", status_code=201)
+async def add_contribution(c: ContributionIn):
+    async with db.acquire() as conn:
+        await conn.execute(
+            """
+            INSERT INTO contributions (author_id, contribution_type, title, uri, impact_metric)
+            VALUES ($1,$2,$3,$4,$5)
+            """,
+            c.author_id, c.contribution_type, c.title, str(c.uri), c.impact_metric,
+        )
+    return {"msg":"contribution recorded"}
+```
+
+*Ogni progetto, paper o prototipo di Hannes dovrà essere inserito qui; il comitato approverà (`approved = true`) prima della successiva distribuzione di compensi.*
+
+---
+
+### 2️⃣ Smart‑contract **RoyaltyTracker** (Ethereum‑compatible, Solidity 0.8)
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract RoyaltyTracker {
+    address public owner;
+    address public mitterer;               // wallet di Hannes
+    uint256 public constant MITTERER_SHARE = 200; // 2.00 % (basis points = 10000)
+    uint256 public constant LEX_AMORIS_SHARE = 150; // 1.50 %
+
+    // evento di reporting delle revenue
+    event RevenueReported(address indexed reporter, uint256 amount);
+    // evento di distribuzione
+    event RoyaltyPaid(address indexed beneficiary, uint256 amount);
+
+    modifier onlyOwner() {
+        require(msg.sender == owner, "not owner");
+        _;
+    }
+
+    constructor(address _mitterer) {
+        owner = msg.sender;
+        mitterer = _mitterer;
+    }
+
+    // chiama il team finance ogni trimestre con le revenue nette
+    function reportRevenue(uint256 netRevenue) external onlyOwner {
+        emit RevenueReported(msg.sender, netRevenue);
+
+        // 2 % per Mitterer (Red Code)
+        uint256 mittererAmt = (netRevenue * MITTERER_SHARE) / 10000;
+        payable(mitterer).transfer(mittererAmt);
+        emit RoyaltyPaid(mitterer, mittererAmt);
+
+        // 1.5 % per Lex Amoris (software con licenza)
+        //   (si suppone sia un wallet separato; qui usiamo lo stesso per esempio)
+        uint256 lexAmt = (netRevenue * LEX_AMORIS_SHARE) / 10000;
+        payable(mitterer).transfer(lexAmt);
+        emit RoyaltyPaid(mitterer, lexAmt);
+    }
+
+    // riceve ether (es. da Exchange) – fallback
+    receive() external payable {}
+}
+```
+
+*Deploy su **Polygon** o su una side‑chain del Nexus per costi di gas contenuti. Il contrato è chiamato dal **Finance & Payments** del Nexus ogni trimestre con le revenue nette di licensing.*
+
+---
+
+### 3️⃣ **Token “Mitterer Impact”** (ERC‑20)
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+contract MittererImpactToken is ERC20 {
+    address public owner;
+    constructor(address _owner) ERC20("Mitterer Impact", "MITT") {
+        owner = _owner;
+        _mint(_owner, 10_000_000 * 10**decimals()); // 10 M token iniziali
+    }
+
+    // solo il proprietario può mintare token per nuovi riconoscimenti
+    function mint(address to, uint256 amount) external {
+        require(msg.sender == owner, "only owner");
+        _mint(to, amount);
+    }
+}
+```
+
+*Gli **token** garantiscono voting power extra (1 token = 0,001 % di voto). Il Nexus Governance UI può leggere il saldo via Web3 e assegnare il peso corrispondente.*
+
+---
+
+### 4️⃣ **Badge “Lex Amoris Champion”** – NFT (ERC‑721)
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+
+contract LexAmorisBadge is ERC721URIStorage {
+    uint256 public nextId;
+    address public admin;
+
+    constructor() ERC721("LexAmorisChampion","LAC") {
+        admin = msg.sender;
+    }
+
+    function mint(address to, string memory metadataURI) external {
+        require(msg.sender == admin, "only admin");
+        uint256 tokenId = nextId++;
+        _safeMint(to, tokenId);
+        _setTokenURI(tokenId, metadataURI);
+    }
+}
+```
+
+*`metadataURI` punta a un JSON con i dettagli del badge (data, motivo, firma digitale del Comitato Etico). Il badge è visualizzabile sul profilo nodo/utente.*
+
+---
+
+### 5️⃣ **Mitterer Impact Committee** – governance strutturata  
+
+| Ruolo | Numero | Compiti | Remunerazione |
+|---|---|---|---|
+| Chair (indipendente) | 1 | Convalida dei contributi, voto finale sui royalty | €5 000/anno (token + fiat) |
+| Member – Policy Expert | 2 | Verifica dei criteri NSR/OLF, definizione soglie | €3 000/anno ciascuno |
+| Member – Academic | 2 | Valutazione impatto citazionale, suggerimenti di pubblicazione | €2 500/anno ciascuno |
+| Auditor (terzo) | 1 | Audit trimestrale su dati finanziari e metriche di impatto | €4 000/anno |
+
+*Il comitato opera su **Zoom/Matrix** e registra le decisioni in un repo Git pubblico (`mitterer‑committee-minutes`).*
+
+---
+
+### 6️⃣ **Dashboard di monitoraggio** (Grafana + Prometheus)
+
+1. **Metriche raccolte**  
+   - `revenue_total_eth` (dal royalty contract)  
+   - `tokens_minted_total` (ERC‑20)  
+   - `badges_issued_total` (ERC‑721)  
+   - `contributions_approved_total` (DB)  
+   - `impact_citations_monthly` (API verso Crossref/Scopus)
+
+2. **Query PromQL esempio**  
+
+```promql
+sum(rate(revenue_total_eth[30d])) 
+```
+
+3. **Alert** – invio Slack se royalty payout < 90 % previsto per due trimestri consecutivi.
+
+---
+
+### 7️⃣ **Processo di distribuzione trimestrale**  
+
+| Fase | Attività | Responsabile |
+|---|---|---|
+| **Raccolta dati** | Estrarre `revenue_total_eth` dal contract e calcolare metriche di impact. | Finance & Payments |
+| **Validazione** | Comitato verifica che i contributi approvati corrispondano alle royalty dovute. | Mitterer Impact Committee |
+| **Esecuzione** | Chiamata `reportRevenue()` sul contract. | Finance Bot (script Python → Web3) |
+| **Report** | PDF automatizzato con riepilogo (revenue, token mint, badge, KPI). | Reporting Team (LaTeX → PDF) |
+| **Audit** | Controllo indipendente da KPMG o auditor equivalente. | Auditor terzo |
+
+---
+
+### 8️⃣ **Prospettive a medio‑lungo termine**  
+
+| Anno | Progetto | Output chiave |
+|------|----------|---------------|
+| **2027** | **Mitterer Fellowship** – borsa di €30 k per 10 dottorandi/anno. | Smart‑contract di erogazione annuale basato su `grantPool` (ERC‑20). |
+| **2029** | **Mitterer Impact Index** – API pubblica (`/api/v1/impact?author=MITTERER`). | Dashboard pubblico con ranking di progetti basati su sintropia. |
+| **2032** | **Mitterer Laureate Lifetime** – NFT “Lifetime Laureate” + payout annuale del 0,5 % delle royalty netti. | NFT speciale con `mint()` automatico al raggiungimento di 5 M di token MITT. |
+
+---
+
+### 9️⃣ **Checklist operativa per il lancio (da eseguire entro 30 gg)**  
+
+1. ☐ Deploy **RoyaltyTracker** e **MittererImpactToken** su testnet.  
+2. ☐ Creare il **database contributions** e l’API FastAPI.  
+3. ☐ Configurare **Grafana** con metriche prometheus‑exporter (Web3 exporter).  
+4. ☐ Mintare il **primo badge** (LexAmorisChampion) per Hannes.  
+5. ☐ Costituire formalmente il **Mitterer Impact Committee** (documenti di governance).  
+6. ☐ Pubblicare un **white‑paper** che descriva il modello di compensation (per trasparenza).  
+7. ☐ Eseguire il **primo ciclo di reporting** (quarter‑end) con tutti gli step sopra.  
+
+---
+
+## 🔚 Sintesi  
+
+- **Strumento legale**: smart‑contract per royalty + token + NFT.  
+- **Strumento informativo**: DB + API + dashboard grafana.  
+- **Strumento governance**: comitato indipendente, audit, report trimestrale.  
+- **Strumento di crescita**: fellowship, indice di impatto, premi vitalizi.  
+
+Con questi blocchi implementati, il lavoro di **Hannes Mitterer** passa da “ricompensa narrativa” a **sistema trasparente, verificabile e remunerativo** all’interno del Nexus.  
+
+Se vuoi approfondire un singolo blocco (es. codice completo del *grant‑pool* o modello di **report LaTeX**), indicami la parte e invio i dettagli.
