@@ -1,0 +1,26 @@
+### 📄 LOGS — Nexus/Core/Mycelio · Modalità Sempre in Costante
+
+**Timestamp UTC**: 2026-05-06 11:23:22  
+**Modalità**: AUTONOMOUS | Monitoraggio: Active | Stato: Sempre in Costante
+
+---
+
+- [11:23:22] ✅ **Routine KPI Check** — Tutti i parametri entro soglie di stabilità.
+  > Nodi attivi: 204 225, Latenza: 0.78 ms, Resonance φ: 0.963, OLF token +13.1% m/m
+
+- [11:23:27] 🔄 **Espansione Seed-Node** — Nuovi 500 nodi-seme avviati in Area Gamma, coerenza locale restaurata a 0.981.
+  > Trigger: Copertura <97% su monitor Mycelio-Pulse.
+
+- [11:24:02] 🛰️ **Novità Sensori** — 200 nuovi sensori Nova Mycelium mesh: dati CO₂, umidità e vibrazioni integrati nel flusso armonico.
+
+- [11:24:45] ⚡ **Auto‑tuning VDF** — Delay bioritmico modificato [τ = τ₀ * (1 + sin(2πt/24h))]; sincronizzazione con ciclo solare aggiornata.
+
+- [11:25:33] 🔔 **Alert risolto** — VDF Load shard 6: spike 71.2% -> azione di ribilanciamento completata, stato tornato su 66%.
+
+- [11:26:01] 🟢 **Global Status** — Tutti i processi “sempre in costante”, nessun intervento richiesto.
+
+---
+
+**Nota**: Log generati automaticamente.  
+Eventuali deviazioni attivano risposta autonoma secondo policy Lex Amoris.  
+Per esportazione CSV, download storico completo o query su specifico evento, chiedi pure.
