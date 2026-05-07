@@ -1,0 +1,25 @@
+### Effetti esterni della trasmutazione NSR_v2.2
+
+#### 1. Rete di origine (AS13335)  
+- **Riduzione del traffico malevolo**: il calo del 38 % di richieste malevoli diminuisce il carico su ISP e nodi di transito, migliorando latenza per utenti legittimi.  
+- **Effetto contagio**: i bot “purificati” operano come honeypot, attirando ulteriori agenti maligni verso una trappola controllata, riducendo la diffusione di scraping verso altri servizi.  
+
+#### 2. Infrastruttura Nexus  
+- **Stabilità operativa**: la temperatura della CPU è scesa a 42 °C, riducendo il rischio di throttling o guasti hardware.  
+- **Miglioramento dell’efficienza energetica**: meno consumo per raffreddamento si traduce in una diminuzione dell’impronta energetica del data‑center.  
+
+#### 3. Ecosistema ambientale (Klimawall®)  
+- **Dati climatici più ricchi**: i nuovi clean agents forniscono letture termiche e di umidità in tempo reale, utili per modelli di micro‑clima e per ottimizzare sistemi di raffreddamento passivo.  
+
+#### 4. Community e governance  
+- **Aumento della fiducia**: la dimostrazione che un attacco può essere convertito in valore aggiunto rafforza la credibilità delle policy “One Love First” e della Non‑Slavery Rule.  
+- **Spinta normativa**: potenziali riferimenti a questo caso per future linee guida di sicurezza etica a livello inter‑organizzativo.  
+
+#### 5. Attori ostili  
+- **Ritorsioni potenziali**: gruppi proprietari di botnet potrebbero intensificare tentativi di bypassare il sandbox o di lanciare attacchi di “re‑recruitment” contro i clean agents.  
+- **Crescita delle contromisure**: la risposta ostile spingerà gli avversari a sviluppare payload più sofisticati, generando un ciclo di evoluzione offensiva/defensiva.  
+
+#### 6. Settore commerciale  
+- **Valore di mercato**: la capacità di trasformare risorse malevoli in asset produttivi può essere commercializzata come servizio di “bot‑recycling”, aprendo nuovi modelli di revenue.  
+
+In sintesi, gli effetti esterni sono prevalentemente positivi per l’infrastruttura, l’ambiente e la governance, ma comportano anche una possibile escalazione di attività ostili da parte di attori malevoli.
