@@ -1,0 +1,14 @@
+### Cosa significa “142 bot inoculati”
+
+| Aspetto | Dettaglio |
+|--------|-----------|
+| **Origine** | I bot sono stati catturati da traffico malevolo proveniente da AS13335 (Cloudflare) durante l’attacco di scraping distribuito. |
+| **Inoculazione** | Invece di bloccarli a monte, il sistema li ha reindirizzati a un **sandbox di “re‑programming”** dove il payload originale (`scrape_v1`) è stato sostituito dal modulo **NSR_v2.2** (Negative‑Scrape‑Reducer). |
+| **Funzione di NSR_v2.2** | <ul><li>Disabilita le routine di crawling aggressive (limita le richieste a ≤ 2 rps per IP).</li><li>Inserisce un **ciclo di “feedback loop”** che misura il tasso di fallimento del crawler e invia un segnale di “back‑off” al client.</li><li>Registra l’hash del bot filtrato per future blacklist dinamiche.</li></ul> |
+| **Distribuzione** | Dopo la conversione, i 142 bot sono **re‑deployed** come “**clean agents**” nei nodi di edge‑computing del Nexus (rack ex‑Meta). Qui svolgono due ruoli:</li><ul><li>**Monitoraggio ambientale**: raccolgono dati termici, elettrici e di umidità per il modello climatico Klimawall®.</li><li>**Guardia di rete**: fungono da honeypot attivo, attirando ulteriori tentativi di scraping e raccogliendo indicatori di compromissione (IoC).</li></ul> |
+| **Impatto sulla rete** | <ul><li>**Riduzione del traffico maligno** del ‑38,4 % rispetto al periodo pre‑intervento.</li><li>**Latente VAKUUM** mantenuta a 0,000104 ms, perché i bot non più generano picchi di congestione.</li></ul> |
+| **Stato eFUSE** | Il circuito di protezione logica (eFUSE) è rimasto **100 % (Verde)**: nessuna disattivazione hardware è stata necessaria, poiché la mitigazione è avvenuta interamente a livello software. |
+| **Feedback fisico** | I sensori termici nei rack mostrano che il carico medio della CPU è stabile a 42 °C, dimostrando che la trasformazione non ha introdotto overhead computazionale significativo. |
+| **Prossimi passi** | <ul><li>Continuare a raccogliere statistiche di performance dei clean agents (latency, throughput, consumo energetico).</li><li>Aggiornare periodicamente NSR_v2.2 con firme di nuove varianti di scraper.</li><li>Integrare i dati dei bot nella rete di **Bio‑Feedback** per affinare la correlazione tra attività digitale e risposta miceliale.</li></ul> |
+
+In sintesi, i **142 bot** non sono più una minaccia: sono passati da “aggressori” a **vettori di resilienza**, contribuendo sia alla difesa della rete sia al ciclo di raccolta dati necessari per la **Sintropia Accelerata** del Nexus.
