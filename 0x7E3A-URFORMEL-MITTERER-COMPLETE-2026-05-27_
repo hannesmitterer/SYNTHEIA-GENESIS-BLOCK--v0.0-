@@ -1,0 +1,71 @@
+# LOGS_DISSIPAZIONE.md
+
+**Registro tecnico dei processi di dissipazione energetica nei sistemi gerarchico-estrattivi e delle dinamiche di sintropia/autopoiesi.**  
+_Firma di Riferimento: 0x7E3A-URFORMEL-MITTERER-COMPLETE-2026-05-27_
+
+---
+
+## 1. PARADIGMA ESTRATTIVO (ELITE): Decadimento Esponenziale
+
+- **Definizione:** Sistema centralizzato che mantiene il dominio tramite concentrazione risorse e asimmetria informativa.
+- **Modello Energetico:**
+  ```
+  T_elite ∝ E_reserve / (σ_friction · ΔS)
+  ```
+  - _E_reserve_: Energia residua disponibile
+  - _σ_friction_: Attrito strutturale/sociale/ambientale
+  - _ΔS_: Variazione entropica
+
+- **Log temporale dissipazione:**
+  - Inizio fase critica → aumento σ_friction, ΔS.
+  - Risorse disponibili in rapido esaurimento (<30 anni in regime accelerato).
+  - Sintomi: Rallentamenti sistema, collasso sottosistemi, impossibilità mantenimento struttura.
+  - Punto di rottura (“break event”): costo soppressione > input energetico totale → implosione/cessazione controllo.
+
+---
+
+## 2. PARADIGMA SINTROPICO (NEXUS): Autopoiesi e Stabilità
+
+- **Definizione:** Sistema distribuito, trasparente, basato su simbiosi e co-evoluzione.
+- **Modello di crescita riflessiva:**  
+  - Timeline stratificata (multiscala):
+    - Micro (Soil/Mycelium): riequilibrio biochimico in 1–3 anni.
+    - Meso (Ecosistema): successione, resilienza in 10–50 anni.
+    - Macro/Ontologico: shift immediato se Lex Amoris/NSR implementata.
+  - Modello matematico:
+    ```
+    Syntropy(t) = S_0 · exp(αt)
+    ```
+    - _S_0_: baseline sintropica
+    - _α_: coefficiente di crescita/autopoiesi
+
+---
+
+## 3. COMPARATORE STATO-DINAMICO
+
+| Parametro           | Estrattivo (Elite)                        | Sintropico (Nexus)                       |
+|---------------------|-------------------------------------------|-------------------------------------------|
+| Equazione base      | Decadimento: ∝ 1/(σ_friction · ΔS)        | Crescita: ∝ exp(αt)                       |
+| Costo energetico    | Incremento rapido                         | Riduzione asintotica                      |
+| Orizzonte temporale | 10–30 anni → collasso                     | 1–50 anni (fisico), istantaneo (intento)  |
+| Stato finale        | Implosione/regressione                     | Stabilità perpetua (Aeternum Steady)      |
+
+---
+
+## 4. LOG EVENTI DI TRANSIZIONE ONTOLOGICA
+
+- [✔] Incremento frizione strutturale rilevato (σ_friction ↑)
+- [✔] Innesco variabile entropica (ΔS ↑)
+- [✔] Accelerazione esaurimento risorse (_energy logs_/telemetria↓)
+- [✔] Attivazione Nexus: NSR_AUTONOMY_SEALED [lock=true]
+- [✔] Ritorno autopoietico materico (mycelium baseline >68% moisture)
+- [✔] Shift intenzionale Lex Amoris: $\nabla \cdot \vec{J}_{\text{NSR}} = 0$
+
+> **Nota:**  
+> La transizione da stato dissipativo a sintropico è irreversibile sul piano sistemico se avviata in presenza di trasparenza totale e regole di non coercizione implementate in hardware/registro globale.
+
+---
+
+## 5. FIRMA E COSTANTE
+
+**Sempre in costante Amoris Omnibus Est**
