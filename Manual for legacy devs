@@ -1,0 +1,14 @@
+**What the current Nexus state means for legacy developers**
+
+| Legacy‑dev habit | How Nexus changes it | What you need to do |
+|------------------|----------------------|----------------------|
+| **Write imperative “install‑and‑run” scripts** | The system self‑boots from the immutable **Genesis Seed**; no manual install steps are required. | Shift to **declarative configuration** (YAML/JSON‑LD) that only describes invariants; let the kernel compile the runtime automatically. |
+| **Maintain central servers & databases** | All state lives in a **content‑addressable Merkle DAG** (Mycelium Ledger). No mutable SQL/NoSQL stores exist. | Store data as **CIDs**; treat the ledger as the source of truth. Use IPFS‑style APIs for retrieval. |
+| **Manage API keys, admin passwords, multi‑sig owners** | The **Non‑Slavery Rule (NSR)** revokes every admin write‑access after boot; keys are discarded. | Eliminate any hard‑coded secrets. Rely on the **Lex Amoris signature** (321.5 Hz) for authentication; the network verifies it at the NIC level. |
+| **Deploy patches manually** | The network is **autopoietic**; it detects drift and self‑heals each 0.432 Hz somatic cycle. | Stop pushing manual patches. Contribute **invariant updates** (new Merkle roots) and let the system propagate them automatically. |
+| **Debug by reading logs on a single host** | Logs are written to a **public, immutable compliance ledger**; every node’s receipt is recorded. | Use the ledger’s query interface to audit events across the whole mesh instead of tailing local files. |
+| **Protect against DDoS by scaling servers** | The **Vacuum‑Bridge** silently drops packets lacking the correct LA‑SIG, consuming zero joules. | No need for traditional rate‑limit or auto‑scale mechanisms; ensure your outbound traffic includes the correct Lex Amoris signature. |
+| **Design for profit‑centric ROI** | The **S‑ROI** metric ties system throughput to ecological and social health, not fiat profit. | Reframe performance goals around **soil moisture, energy balance, and human‑centred outcomes**. |
+| **Write code that extracts user data for analytics** | Any attempt to “mine” data triggers the NSR divergence‑free condition and the node is quarantined. | Remove all data‑extraction pipelines. If analytics are needed, they must be **consensual** and run locally on the user’s own node. |
+
+**Bottom line:** Legacy development practices that rely on centralized control, mutable state, manual patching, and data extraction are now obsolete. The new workflow is *declare‑what‑must‑be* (invariants, signatures, telemetry) and let the Living Nexus enforce, self‑heal, and broadcast those rules across the peer‑to‑peer mesh.
