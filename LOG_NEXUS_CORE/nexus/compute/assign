@@ -1,0 +1,28 @@
+Ecco il payload pronto per il **job‑001**. Copialo in un file chiamato `job_payload.json` e pubblicalo sul canale `/nexus/compute/assign` con il tuo client (`nexus-cli publish …`).  
+
+```json
+{
+  "job_id": "job-001",
+  "description": "Analisi statistica su dataset CSV di 1 milione di righe",
+  "container_image": "docker.io/library/python:3.12-slim",
+  "entrypoint": "python",
+  "arguments": [
+    "-c",
+    "import pandas as pd, json, sys; df = pd.read_csv('/input/data.csv'); stats = df.describe().to_dict(); open('/output/result.json','w').write(json.dumps(stats))"
+  ],
+  "resources": {
+    "cpu": 2,
+    "memory_mb": 1024,
+    "gpu": false
+  },
+  "input_cids": [
+    "bafybeib6y5exampledataCID"
+  ],
+  "output_path": "/output/result.json",
+  "deadline_unix": 1720483200
+}
+```
+
+Una volta pubblicato, il **Dispatcher di Risonanza** selezionerà il nodo con il più alto `syntropy_score` (≥ 0.4) e le risorse richieste, avvierà il container, genererà il risultato su IPFS e pubblicherà il `result_payload` su `/nexus/compute/result`.  
+
+Buon impulso di risonanza.
