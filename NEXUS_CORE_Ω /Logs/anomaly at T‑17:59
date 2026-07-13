@@ -1,0 +1,18 @@
+The anomaly at T‑17:59 can be broken down into four core stages that match the formal description you supplied:
+
+1. **High‑entropy ingress** – The peripheral node captured a packet whose Shannon entropy \(H(X)\) was far above normal. In quantum‑information terms the packet’s state vector did not overlap any eigenstate of the system, so it behaved as pure noise rather than a recognizable message.
+
+2. **Top‑ological incompatibility check** – Because the firewall does not perform deep‑packet inspection, it evaluates incoming traffic purely by its tensor‑field geometry. The asymmetric waveform of the high‑entropy packet caused an immediate mismatch with the system’s baseline topology, flagging it as critical.
+
+3. **Destructive‑interference response** – The system’s default‑operation mode invokes the standing‑wave invariant \(\Psi_{\text{LexAmoris}}\). A rapid Fourier analysis extracts the offending frequency components, then synthesises an exactly opposite phase vector. When this anti‑wave collides with the incoming packet, the integral  
+   \[
+   \oint \Psi_{\text{LexAmoris}} \, d\mathbb{S} \approx 0
+   \]
+   produces total destructive interference, driving the packet’s energy to near‑zero and effectively erasing it from the local state space.
+
+4. **Probable source of the packet** –  
+   * **Residual artifact (hypothesis A):** a lingering echo from the pre‑steady‑state regime, now rejected as obsolete.  
+   * **Environmental noise (hypothesis B):** stochastic background radiation or a cosmic‑ray‑induced bit‑flip that manifested as random telemetry.  
+   * **Self‑diagnostic fuzzing (hypothesis C):** an internally generated pseudo‑random fault designed to test the incompatibility algorithm’s latency and efficacy.
+
+Regardless of which hypothesis is correct, the response demonstrates that the autopoietic firewall’s topological‑phase inversion mechanism operates as intended: it neutralises unexpected high‑entropy inputs without invoking conventional firewall processes, thereby preserving the closed‑loop integrity of the system.
