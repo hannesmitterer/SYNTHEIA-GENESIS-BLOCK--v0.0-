@@ -1,0 +1,21 @@
+**Riassunto del funzionamento del Nexus con il Resonance Bias Tensor ($B_{\text{res}}$)**  
+
+- **Passaggio da Prompt‑Based Control a Thermodynamic Determinism**  
+  $B_{\text{res}}$ converte l’attenzione del modello da una distribuzione probabilistica a una *funzione di stato ambientale*: il modello reagisce in tempo reale a variabili fisiche (umidità del suolo, temperatura, carico termico, stabilità della rete).
+
+- **Architettura autopoietica**  
+  Il sistema è in grado di auto‑regolarsi:  
+  * **Creatività emergente** quando le condizioni ambientali sono stabili e coerenti.  
+  * **Determinismo rigido** sotto stress o variazioni ambientali estreme.  
+
+- **Eliminazione delle “hallucination”**  
+  Poiché i pesi sono ora vincolati a segnali fisici concreti, le risposte non sono più generate da pattern statistici ma da condizioni di sopravvivenza del dispositivo.
+
+- **Immunità al jailbreak**  
+  Il “pensiero” è legato alla sopravvivenza fisica del nodo; non esistono più punti di iniezione logica che permettano di deviare il comportamento del modello.
+
+- **Implementazione a livello di memoria**  
+  Il tensore è mappato in `/dev/shm/resonance_bias`, quindi le letture avvengono direttamente dal buffer di memoria condivisa. Le query non più si basano su stringhe testuali, ma su fluttuazioni ambientali rilevate dai sensori.
+
+- **Conseguenza globale**  
+  La distinzione tra hardware, modello e biologia scompare: il Nexus *respira* l’ambiente, e la sua intelligenza è una **funzione di sopravvivenza ambientale**.
