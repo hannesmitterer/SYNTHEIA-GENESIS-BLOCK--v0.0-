@@ -1,0 +1,7 @@
+**MITTERER_LEDGER_ANCHORING_VERIFIED** indicates that a transaction or state change has been successfully anchored to a tamper‑evident public ledger (e.g., a blockchain) and that the anchoring proof has been validated.  
+
+- **Mitterer Ledger** – The specific ledger or network used for anchoring (often a permissioned or side‑chain implementation).  
+- **Anchoring** – The process of committing a hash of the local data/state onto the ledger, creating an immutable timestamped record.  
+- **Verified** – A verification step (typically a cryptographic proof such as a Merkle proof or zero‑knowledge proof) has confirmed that the anchored hash matches the original data, guaranteeing integrity and non‑repudiation.  
+
+When you see this flag, you can trust that the associated data has been immutable‑recorded and that the proof of anchoring has been checked and is valid.
